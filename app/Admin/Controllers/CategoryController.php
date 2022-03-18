@@ -21,13 +21,16 @@ class CategoryController extends AdminController
             $grid->column('id')->sortable();
             $grid->column('category_name');
             $grid->column('image');
+            $grid->column('sort')->sortable();
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
-        
+
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-        
+
             });
+
+            $grid->model()->orderByDesc('sort');
         });
     }
 
@@ -44,6 +47,7 @@ class CategoryController extends AdminController
             $show->field('id');
             $show->field('category_name');
             $show->field('image');
+            $show->field('sort');
             $show->field('created_at');
             $show->field('updated_at');
         });
@@ -58,11 +62,17 @@ class CategoryController extends AdminController
     {
         return Form::make(new Category(), function (Form $form) {
             $form->display('id');
-            $form->text('category_name');
-            $form->text('image');
-        
+            $form->text('category_name')->rules('required');
+            $form->text('image')->rules('required');
+            $form->text('sort')->rules('required|integer');
+
             $form->display('created_at');
             $form->display('updated_at');
         });
+    }
+
+    public function categoryList()
+    {
+        return  \App\Models\Category::all(['id', 'category_name as text']);
     }
 }

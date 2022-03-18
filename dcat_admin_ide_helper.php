@@ -38,7 +38,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection remember_token
      * @property Grid\Column|Collection category_name
      * @property Grid\Column|Collection image
-     * @property Grid\Column|Collection num
+     * @property Grid\Column|Collection sort
      * @property Grid\Column|Collection deleted_at
      * @property Grid\Column|Collection uuid
      * @property Grid\Column|Collection connection
@@ -46,6 +46,9 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection payload
      * @property Grid\Column|Collection exception
      * @property Grid\Column|Collection failed_at
+     * @property Grid\Column|Collection category_id
+     * @property Grid\Column|Collection question
+     * @property Grid\Column|Collection answer
      * @property Grid\Column|Collection email
      * @property Grid\Column|Collection token
      * @property Grid\Column|Collection tokenable_type
@@ -81,7 +84,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection remember_token(string $label = null)
      * @method Grid\Column|Collection category_name(string $label = null)
      * @method Grid\Column|Collection image(string $label = null)
-     * @method Grid\Column|Collection num(string $label = null)
+     * @method Grid\Column|Collection sort(string $label = null)
      * @method Grid\Column|Collection deleted_at(string $label = null)
      * @method Grid\Column|Collection uuid(string $label = null)
      * @method Grid\Column|Collection connection(string $label = null)
@@ -89,6 +92,9 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection payload(string $label = null)
      * @method Grid\Column|Collection exception(string $label = null)
      * @method Grid\Column|Collection failed_at(string $label = null)
+     * @method Grid\Column|Collection category_id(string $label = null)
+     * @method Grid\Column|Collection question(string $label = null)
+     * @method Grid\Column|Collection answer(string $label = null)
      * @method Grid\Column|Collection email(string $label = null)
      * @method Grid\Column|Collection token(string $label = null)
      * @method Grid\Column|Collection tokenable_type(string $label = null)
@@ -129,7 +135,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection remember_token
      * @property Show\Field|Collection category_name
      * @property Show\Field|Collection image
-     * @property Show\Field|Collection num
+     * @property Show\Field|Collection sort
      * @property Show\Field|Collection deleted_at
      * @property Show\Field|Collection uuid
      * @property Show\Field|Collection connection
@@ -137,6 +143,9 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection payload
      * @property Show\Field|Collection exception
      * @property Show\Field|Collection failed_at
+     * @property Show\Field|Collection category_id
+     * @property Show\Field|Collection question
+     * @property Show\Field|Collection answer
      * @property Show\Field|Collection email
      * @property Show\Field|Collection token
      * @property Show\Field|Collection tokenable_type
@@ -172,7 +181,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection remember_token(string $label = null)
      * @method Show\Field|Collection category_name(string $label = null)
      * @method Show\Field|Collection image(string $label = null)
-     * @method Show\Field|Collection num(string $label = null)
+     * @method Show\Field|Collection sort(string $label = null)
      * @method Show\Field|Collection deleted_at(string $label = null)
      * @method Show\Field|Collection uuid(string $label = null)
      * @method Show\Field|Collection connection(string $label = null)
@@ -180,6 +189,9 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection payload(string $label = null)
      * @method Show\Field|Collection exception(string $label = null)
      * @method Show\Field|Collection failed_at(string $label = null)
+     * @method Show\Field|Collection category_id(string $label = null)
+     * @method Show\Field|Collection question(string $label = null)
+     * @method Show\Field|Collection answer(string $label = null)
      * @method Show\Field|Collection email(string $label = null)
      * @method Show\Field|Collection token(string $label = null)
      * @method Show\Field|Collection tokenable_type(string $label = null)

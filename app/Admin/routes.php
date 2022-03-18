@@ -13,5 +13,10 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index');
+    $router->get('/api/category_list', 'CategoryController@categoryList');
+    $router->get('/api/type_list', 'QuestionTypeController@typeList');
 
+    $router->resource('category', 'CategoryController');
+    $router->resource('knowledge', 'KnowledgeController');
+    $router->resource('question', 'QuestionController');
 });
