@@ -19,4 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::prefix('interview')->group(function () {
     Route::get('/category', [\App\Http\Controllers\CategoryController::class, 'index']);
+    Route::get('/knowledge', [\App\Http\Controllers\CategoryController::class, 'knowledge']);
+    Route::get('/knowledgeInfo', [\App\Http\Controllers\CategoryController::class, 'knowledgeInfo']);
 });
