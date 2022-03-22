@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Dcat\Admin\Traits\HasDateTimeFormatter;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Redis;
@@ -11,6 +12,7 @@ class Knowledge extends Model
 {
 	use HasDateTimeFormatter;
     use SoftDeletes;
+    use HasFactory;
 
     protected $table = 'knowledge';
 
