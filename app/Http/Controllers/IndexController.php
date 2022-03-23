@@ -24,25 +24,25 @@ class IndexController extends Controller
 
     /**
      * 知识点列表
-     * @param Request $request
+     * @param $categoryId
      * @return \Illuminate\Http\JsonResponse
      */
-    public function knowledge(Request $request)
+    public function knowledge($categoryId)
     {
         return response()->json([
-            'list' => Knowledge::getKnowledgeListCacheByCategory($request->input('category_id', 0))
+            'list' => Knowledge::getKnowledgeListCacheByCategory($categoryId)
         ]);
     }
 
     /**
      * 知识点详情
-     * @param Request $request
+     * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function knowledgeInfo(Request $request)
+    public function knowledgeInfo($id)
     {
         return response()->json([
-            'data' => Knowledge::getKnowledgeInfo($request->input('id'))
+            'data' => Knowledge::getKnowledgeInfo($id)
         ]);
     }
 
@@ -59,12 +59,12 @@ class IndexController extends Controller
 
     /**
      * 搜索
-     * @param Request $request
+     * @param $keyword
      * @return \Illuminate\Http\JsonResponse
      */
-    public function search(Request $request)
+    public function search($keyword)
     {
-        $data = Knowledge::where('question', 'like', "%{$request->input('keyword')}%")->limit(50)->get(['id', 'question']);
+        $data = Knowledge::where('question', 'like', "%$keyword%")->limit(50)->get(['id', 'question']);
         return response()->json([
             'list' => $data
         ]);

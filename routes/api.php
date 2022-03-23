@@ -19,9 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::prefix('interview')->group(function () {
     Route::get('/category', [\App\Http\Controllers\IndexController::class, 'category']);
-    Route::get('/knowledge', [\App\Http\Controllers\IndexController::class, 'knowledge']);
+    Route::get('/knowledge/{categoryId}', [\App\Http\Controllers\IndexController::class, 'knowledge']);
     Route::get('/collection', [\App\Http\Controllers\IndexController::class, 'collection']);
-    Route::get('/search', [\App\Http\Controllers\IndexController::class, 'search']);
-    Route::get('/knowledgeInfo', [\App\Http\Controllers\IndexController::class, 'knowledgeInfo']);
+    Route::get('/search/{keyword}', [\App\Http\Controllers\IndexController::class, 'search']);
+    Route::get('/knowledgeInfo/{id}', [\App\Http\Controllers\IndexController::class, 'knowledgeInfo']);
     Route::get('/exam', [\App\Http\Controllers\IndexController::class, 'generateExam']);
 });
