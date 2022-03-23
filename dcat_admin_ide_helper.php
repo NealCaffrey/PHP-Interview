@@ -36,25 +36,35 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection password
      * @property Grid\Column|Collection avatar
      * @property Grid\Column|Collection remember_token
-     * @property Grid\Column|Collection category_name
-     * @property Grid\Column|Collection image
-     * @property Grid\Column|Collection sort
+     * @property Grid\Column|Collection member_id
+     * @property Grid\Column|Collection knowledge_id
      * @property Grid\Column|Collection deleted_at
+     * @property Grid\Column|Collection category_name
+     * @property Grid\Column|Collection sort
+     * @property Grid\Column|Collection clock_day
      * @property Grid\Column|Collection uuid
      * @property Grid\Column|Collection connection
      * @property Grid\Column|Collection queue
      * @property Grid\Column|Collection payload
      * @property Grid\Column|Collection exception
      * @property Grid\Column|Collection failed_at
+     * @property Grid\Column|Collection content
      * @property Grid\Column|Collection category_id
      * @property Grid\Column|Collection question
      * @property Grid\Column|Collection answer
+     * @property Grid\Column|Collection collection_num
+     * @property Grid\Column|Collection openid
+     * @property Grid\Column|Collection nickname
+     * @property Grid\Column|Collection mobile
+     * @property Grid\Column|Collection sex
+     * @property Grid\Column|Collection points
      * @property Grid\Column|Collection email
      * @property Grid\Column|Collection token
      * @property Grid\Column|Collection tokenable_type
      * @property Grid\Column|Collection tokenable_id
      * @property Grid\Column|Collection abilities
      * @property Grid\Column|Collection last_used_at
+     * @property Grid\Column|Collection select_content
      * @property Grid\Column|Collection email_verified_at
      *
      * @method Grid\Column|Collection id(string $label = null)
@@ -82,25 +92,35 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection password(string $label = null)
      * @method Grid\Column|Collection avatar(string $label = null)
      * @method Grid\Column|Collection remember_token(string $label = null)
-     * @method Grid\Column|Collection category_name(string $label = null)
-     * @method Grid\Column|Collection image(string $label = null)
-     * @method Grid\Column|Collection sort(string $label = null)
+     * @method Grid\Column|Collection member_id(string $label = null)
+     * @method Grid\Column|Collection knowledge_id(string $label = null)
      * @method Grid\Column|Collection deleted_at(string $label = null)
+     * @method Grid\Column|Collection category_name(string $label = null)
+     * @method Grid\Column|Collection sort(string $label = null)
+     * @method Grid\Column|Collection clock_day(string $label = null)
      * @method Grid\Column|Collection uuid(string $label = null)
      * @method Grid\Column|Collection connection(string $label = null)
      * @method Grid\Column|Collection queue(string $label = null)
      * @method Grid\Column|Collection payload(string $label = null)
      * @method Grid\Column|Collection exception(string $label = null)
      * @method Grid\Column|Collection failed_at(string $label = null)
+     * @method Grid\Column|Collection content(string $label = null)
      * @method Grid\Column|Collection category_id(string $label = null)
      * @method Grid\Column|Collection question(string $label = null)
      * @method Grid\Column|Collection answer(string $label = null)
+     * @method Grid\Column|Collection collection_num(string $label = null)
+     * @method Grid\Column|Collection openid(string $label = null)
+     * @method Grid\Column|Collection nickname(string $label = null)
+     * @method Grid\Column|Collection mobile(string $label = null)
+     * @method Grid\Column|Collection sex(string $label = null)
+     * @method Grid\Column|Collection points(string $label = null)
      * @method Grid\Column|Collection email(string $label = null)
      * @method Grid\Column|Collection token(string $label = null)
      * @method Grid\Column|Collection tokenable_type(string $label = null)
      * @method Grid\Column|Collection tokenable_id(string $label = null)
      * @method Grid\Column|Collection abilities(string $label = null)
      * @method Grid\Column|Collection last_used_at(string $label = null)
+     * @method Grid\Column|Collection select_content(string $label = null)
      * @method Grid\Column|Collection email_verified_at(string $label = null)
      */
     class Grid {}
@@ -133,25 +153,35 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection password
      * @property Show\Field|Collection avatar
      * @property Show\Field|Collection remember_token
-     * @property Show\Field|Collection category_name
-     * @property Show\Field|Collection image
-     * @property Show\Field|Collection sort
+     * @property Show\Field|Collection member_id
+     * @property Show\Field|Collection knowledge_id
      * @property Show\Field|Collection deleted_at
+     * @property Show\Field|Collection category_name
+     * @property Show\Field|Collection sort
+     * @property Show\Field|Collection clock_day
      * @property Show\Field|Collection uuid
      * @property Show\Field|Collection connection
      * @property Show\Field|Collection queue
      * @property Show\Field|Collection payload
      * @property Show\Field|Collection exception
      * @property Show\Field|Collection failed_at
+     * @property Show\Field|Collection content
      * @property Show\Field|Collection category_id
      * @property Show\Field|Collection question
      * @property Show\Field|Collection answer
+     * @property Show\Field|Collection collection_num
+     * @property Show\Field|Collection openid
+     * @property Show\Field|Collection nickname
+     * @property Show\Field|Collection mobile
+     * @property Show\Field|Collection sex
+     * @property Show\Field|Collection points
      * @property Show\Field|Collection email
      * @property Show\Field|Collection token
      * @property Show\Field|Collection tokenable_type
      * @property Show\Field|Collection tokenable_id
      * @property Show\Field|Collection abilities
      * @property Show\Field|Collection last_used_at
+     * @property Show\Field|Collection select_content
      * @property Show\Field|Collection email_verified_at
      *
      * @method Show\Field|Collection id(string $label = null)
@@ -179,25 +209,35 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection password(string $label = null)
      * @method Show\Field|Collection avatar(string $label = null)
      * @method Show\Field|Collection remember_token(string $label = null)
-     * @method Show\Field|Collection category_name(string $label = null)
-     * @method Show\Field|Collection image(string $label = null)
-     * @method Show\Field|Collection sort(string $label = null)
+     * @method Show\Field|Collection member_id(string $label = null)
+     * @method Show\Field|Collection knowledge_id(string $label = null)
      * @method Show\Field|Collection deleted_at(string $label = null)
+     * @method Show\Field|Collection category_name(string $label = null)
+     * @method Show\Field|Collection sort(string $label = null)
+     * @method Show\Field|Collection clock_day(string $label = null)
      * @method Show\Field|Collection uuid(string $label = null)
      * @method Show\Field|Collection connection(string $label = null)
      * @method Show\Field|Collection queue(string $label = null)
      * @method Show\Field|Collection payload(string $label = null)
      * @method Show\Field|Collection exception(string $label = null)
      * @method Show\Field|Collection failed_at(string $label = null)
+     * @method Show\Field|Collection content(string $label = null)
      * @method Show\Field|Collection category_id(string $label = null)
      * @method Show\Field|Collection question(string $label = null)
      * @method Show\Field|Collection answer(string $label = null)
+     * @method Show\Field|Collection collection_num(string $label = null)
+     * @method Show\Field|Collection openid(string $label = null)
+     * @method Show\Field|Collection nickname(string $label = null)
+     * @method Show\Field|Collection mobile(string $label = null)
+     * @method Show\Field|Collection sex(string $label = null)
+     * @method Show\Field|Collection points(string $label = null)
      * @method Show\Field|Collection email(string $label = null)
      * @method Show\Field|Collection token(string $label = null)
      * @method Show\Field|Collection tokenable_type(string $label = null)
      * @method Show\Field|Collection tokenable_id(string $label = null)
      * @method Show\Field|Collection abilities(string $label = null)
      * @method Show\Field|Collection last_used_at(string $label = null)
+     * @method Show\Field|Collection select_content(string $label = null)
      * @method Show\Field|Collection email_verified_at(string $label = null)
      */
     class Show {}

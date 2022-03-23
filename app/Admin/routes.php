@@ -15,8 +15,17 @@ Route::group([
     $router->get('/', 'HomeController@index');
     $router->get('/api/category_list', 'CategoryController@categoryList');
     $router->get('/api/type_list', 'QuestionTypeController@typeList');
-
+    //面试库
     $router->resource('category', 'CategoryController');
     $router->resource('knowledge', 'KnowledgeController');
     $router->resource('question', 'QuestionController');
+    //会员管理
+    $router->resource('user', 'UserController');
+    $router->resource('browse', 'BrowseController');
+    $router->resource('collection', 'CollectionController');
+    $router->resource('points', 'PointsController');
+    $router->resource('sign', 'SignController');
+    //小程序
+    $router->resource('version', 'VersionController');
+    $router->resource('help', 'HelpController');
 });
