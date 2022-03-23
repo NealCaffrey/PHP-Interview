@@ -106,6 +106,15 @@ class Knowledge extends Model
         $data = self::with(['category' => function($query) {
             $query->select('id', 'category_name');
         }])->find($id);
+
+        //上一篇
+        $prev = self::where('id', '<', $id)->where('category_id', '=', $data->category_id)->max('id');
+        $data['prev'] = $prev ?: 0;
+
+        //下一篇
+        $next = self::where('id', '>', $id)->where('category_id', '=', $data->category_id)->min('id');
+        $data['next'] = $next ?: 0;
+
         Redis::set('know:info:' . $id, json_encode($data));
 
         return $data;
