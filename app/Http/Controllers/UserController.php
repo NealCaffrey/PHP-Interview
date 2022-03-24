@@ -11,44 +11,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Browse;
 use App\Models\Collection;
-use App\Models\Help;
-use App\Models\Member;
 use App\Models\Question;
 use App\Models\Sign;
-use App\Models\Version;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Validator;
 
-class MemberController extends Controller
+class UserController extends Controller
 {
-    /**
-     * @var $memberId
-     */
-    protected $memberId;
-
-    /**
-     * @var $token
-     */
-    protected $token;
-
     public function __construct(Request $request)
     {
-        $this->token = $request->header('token');
-        $memberInfo = Redis::get('member:cache:');
-    }
-
-    /**
-     * 用户信息
-     * @param $memberId
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getMemberInfo($memberId)
-    {
-        return response()->json([
-            'status' => true,
-            'data' => Member::find($memberId)
-        ]);
+        $this->middleware('auth:api');
     }
 
     /**
@@ -57,48 +29,47 @@ class MemberController extends Controller
      * @param $knowledgeId
      * @return \Illuminate\Http\JsonResponse
      */
-    public function collection($memberId, $knowledgeId)
+    public function collection(Request $request)
     {
+        $knowledgeId = $request->input('knowledge_id');
         $collection = new Collection();
         return response()->json([
-            'status'=> $collection->memberCollectionKnowledge($memberId, $knowledgeId)
+            'status'=> $collection->memberCollectionKnowledge(auth()->user()->id, $knowledgeId)
         ]);
     }
 
     /**
      * 用户收藏列表
-     * @param $memberId
      * @return \Illuminate\Http\JsonResponse
      */
-    public function collectionList($memberId)
+    public function collectionList()
     {
         return response()->json([
             'status'=> true,
-            'list' => Collection::getMemberCollectionList($memberId)
+            'list' => Collection::getMemberCollectionList(auth()->user()->id)
         ]);
     }
 
     /**
      * 用户浏览列表
-     * @param $memberId
      * @return \Illuminate\Http\JsonResponse
      */
-    public function browseList($memberId)
+    public function browseList()
     {
         return response()->json([
             'status'=> true,
-            'list' => Browse::getMemberBrowseList($memberId)
+            'list' => Browse::getMemberBrowseList(auth()->user()->id)
         ]);
     }
 
     /**
      * 签到
      */
-    public function sign($memberId)
+    public function sign()
     {
         $signModel = new Sign();
         $signDay = date('Y-m-d');
-        $check = $signModel->checkIsSign($memberId, $signDay);
+        $check = $signModel->checkIsSign(auth()->user()->id, $signDay);
         if ($check) {
             return response()->json([
                 'status' => false,
@@ -107,7 +78,7 @@ class MemberController extends Controller
         }
 
         return response()->json([
-            'status' => $signModel->memberSign($memberId, $signDay),
+            'status' => $signModel->memberSign(auth()->user()->id, $signDay),
         ]);
     }
 

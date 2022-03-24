@@ -10,12 +10,16 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Tymon\JWTAuth\JWTAuth;
 
 class AuthController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'logout']]);
+    }
+
     /**
      * 注册
      * @param Request $request
@@ -41,7 +45,18 @@ class AuthController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        return $user;
+        if ($user->id) {
+            return response()->json([
+                'status' => true,
+                'data'  => $user,
+                'message' => '注册成功'
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => '注册失败'
+            ]);
+        }
     }
 
     /**
@@ -52,35 +67,60 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-//        if (!$token = Auth::attempt($credentials)) {
-//            return 'error' . $token;
-//        }
-        if (!$token = JWTAuth::attempt($credentials)) {
-            return 'error' . $token;
+        if (!$token = auth('api')->attempt($credentials)) {
+            return response()->json([
+                'status' => false,
+                'message' => '登录失败'
+            ]);
         }
 
-        return $token;
-    }
-
-    public function logout()
-    {
-        JWTAuth::invalidate();
-        return '退出成功';
-    }
-
-    public function user()
-    {
-        $user  = User::find(Auth::user()->id);
-        return response([
+        return response()->json([
             'status' => true,
-            'data' => $user
+            'data' => $this->respondWithToken($token),
+            'message' => '登录成功'
         ]);
     }
 
+    //刷新
     public function refresh()
     {
         return response([
-            'status' => true
+            'status' => true,
+            'data' => $this->respondWithToken(auth('api')->refresh()),
+            'message' => '刷新成功'
+        ]);
+    }
+
+    protected function respondWithToken($token)
+    {
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => \auth('api')->factory()->getTTL() * 60
+        ]);
+    }
+
+    /**
+     * 退出登录
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout()
+    {
+        \auth('api')->logout();
+
+        return response()->json([
+            'status' => true,
+            'message' => '退出成功'
+        ]);
+    }
+
+    //用户信息
+    public function user()
+    {
+        $data = \auth('api')->user();
+        return response([
+            'status' => true,
+            'data' => $data
         ]);
     }
 }

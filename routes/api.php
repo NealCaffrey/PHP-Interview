@@ -24,14 +24,15 @@ Route::prefix('index')->group(function () {
     Route::get('/help', [\App\Http\Controllers\IndexController::class, 'help']);
 });
 
-Route::post('login', [\App\Http\Controllers\AuthController::class, 'login']);//登录
-Route::post('register', [\App\Http\Controllers\AuthController::class, 'register']);//注册
+Route::prefix('auth')->group(function () {
+    Route::any('login', [\App\Http\Controllers\AuthController::class, 'login'])->name('login');//登录
+    Route::post('register', [\App\Http\Controllers\AuthController::class, 'register']);//注册
+});
 
-Route::group(['middleware' => 'jwt.auth'], function () {
-    Route::get('/member', [\App\Http\Controllers\MemberController::class, 'getMemberInfo']);//用户信息
-    Route::get('/collection', [\App\Http\Controllers\MemberController::class, 'collectionList']); //收藏列表
-    Route::post('/collection', [\App\Http\Controllers\MemberController::class, 'collection']);//收藏
-    Route::get('/browse', [\App\Http\Controllers\MemberController::class, 'browseList']);//浏览列表
-    Route::post('sign', [\App\Http\Controllers\MemberController::class, 'sign']);//签到
-    Route::get('/exam', [\App\Http\Controllers\MemberController::class, 'generateExam']);//生成试卷
+Route::prefix('user')->group(function () {
+    Route::get('/collection', [\App\Http\Controllers\UserController::class, 'collectionList']); //收藏列表
+    Route::post('/collection', [\App\Http\Controllers\UserController::class, 'collection']);//收藏
+    Route::get('/browse', [\App\Http\Controllers\UserController::class, 'browseList']);//浏览列表
+    Route::post('sign', [\App\Http\Controllers\UserController::class, 'sign']);//签到
+    Route::get('/exam', [\App\Http\Controllers\UserController::class, 'generateExam']);//生成试卷
 });
