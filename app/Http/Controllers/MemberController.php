@@ -137,27 +137,4 @@ class MemberController extends Controller
             'list' => Question::generateExam($categoryIds, $number, $pattern)
         ]);
     }
-
-    /**
-     * 版本信息
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function version()
-    {
-        return response()->json([
-            'status'=>true,
-            'list' => Version::getVersionList()
-        ]);
-    }
-
-    /**
-     * 帮助中心
-     */
-    public function help()
-    {
-        return response()->json([
-            'status'=> true,
-            'list' => Help::getHelpList()
-        ]);
-    }
 }

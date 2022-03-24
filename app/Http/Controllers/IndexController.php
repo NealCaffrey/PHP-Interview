@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Help;
 use App\Models\Knowledge;
+use App\Models\Version;
 
 class IndexController extends Controller
 {
@@ -37,7 +39,7 @@ class IndexController extends Controller
      * 收藏榜单
      * @return \Illuminate\Http\JsonResponse
      */
-    public function collection()
+    public function rankList()
     {
         return response()->json([
             'status'=> true,
@@ -69,6 +71,30 @@ class IndexController extends Controller
         return response()->json([
             'status'=> true,
             'data' => Knowledge::getKnowledgeInfo($id)
+        ]);
+    }
+
+
+    /**
+     * 版本信息
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function version()
+    {
+        return response()->json([
+            'status'=>true,
+            'list' => Version::getVersionList()
+        ]);
+    }
+
+    /**
+     * 帮助中心
+     */
+    public function help()
+    {
+        return response()->json([
+            'status'=> true,
+            'list' => Help::getHelpList()
         ]);
     }
 }

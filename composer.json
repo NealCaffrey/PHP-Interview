@@ -12,8 +12,7 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "zgldh/qiniu-laravel-storage": "0.10.3",
-        "tymon/jwt-auth": "1.0.*"
+        "zgldh/qiniu-laravel-storage": "0.10.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

@@ -13,30 +13,25 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 //首页
 Route::prefix('index')->group(function () {
     Route::get('/category', [\App\Http\Controllers\IndexController::class, 'category']);
     Route::get('/knowledge/{categoryId}', [\App\Http\Controllers\IndexController::class, 'knowledge']);
-    Route::get('/collection', [\App\Http\Controllers\IndexController::class, 'collection']);
     Route::get('/search/{keyword}', [\App\Http\Controllers\IndexController::class, 'search']);
     Route::get('/knowledgeInfo/{id}', [\App\Http\Controllers\IndexController::class, 'knowledgeInfo']);
+    Route::get('/rank', [\App\Http\Controllers\IndexController::class, 'rankList']);
+    Route::get('/version', [\App\Http\Controllers\IndexController::class, 'version']);
+    Route::get('/help', [\App\Http\Controllers\IndexController::class, 'help']);
 });
-//用户相关
-Route::prefix('member')->group(function () {
-    Route::get('/info', [\App\Http\Controllers\MemberController::class, 'getMemberInfo']);
-    Route::get('/collection', [\App\Http\Controllers\MemberController::class, 'collectionList']);
-    Route::get('/browse', [\App\Http\Controllers\MemberController::class, 'browseList']);
-    Route::post('sign', [\App\Http\Controllers\MemberController::class, 'sign']);
-    Route::get('/exam', [\App\Http\Controllers\MemberController::class, 'generateExam']);
-    Route::get('/version', [\App\Http\Controllers\MemberController::class, 'version']);
-    Route::get('/help', [\App\Http\Controllers\MemberController::class, 'help']);
-});
-Route::group([
-    'prefix' => 'auth'
-], function ($router) {
-    Route::post('login', [\App\Http\Controllers\AuthController::class, 'login']);
+
+Route::post('login', [\App\Http\Controllers\AuthController::class, 'login']);//登录
+Route::post('register', [\App\Http\Controllers\AuthController::class, 'register']);//注册
+
+Route::group(['middleware' => 'jwt.auth'], function () {
+    Route::get('/member', [\App\Http\Controllers\MemberController::class, 'getMemberInfo']);//用户信息
+    Route::get('/collection', [\App\Http\Controllers\MemberController::class, 'collectionList']); //收藏列表
+    Route::post('/collection', [\App\Http\Controllers\MemberController::class, 'collection']);//收藏
+    Route::get('/browse', [\App\Http\Controllers\MemberController::class, 'browseList']);//浏览列表
+    Route::post('sign', [\App\Http\Controllers\MemberController::class, 'sign']);//签到
+    Route::get('/exam', [\App\Http\Controllers\MemberController::class, 'generateExam']);//生成试卷
 });
