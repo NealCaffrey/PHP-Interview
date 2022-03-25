@@ -74,14 +74,10 @@ class AuthController extends Controller
 
         //获取openid
         $app = new Application($config);
-        $api = $app->getClient();
-        $response = $api->get('/sns/jscode2session', [
-            'js_code' => $request->input('code'),
-            'grant_type' => 'authorization_code'
-        ]);
+        $data = $app->auth->session($request->input('code'));
 
-
-        dd($response);
+        $da = $app->encryptor->decryptData($data['session_key'], $request->input('iv'), $request->input('encryptedData'));
+        dd($da);
 
         $credentials = $request->only('email', 'password');
         $credentials = [
