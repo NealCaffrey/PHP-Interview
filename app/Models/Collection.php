@@ -15,16 +15,24 @@ class Collection extends Model
 
     /**
      * 用户收藏知识点
-     * @param $userId
-     * @param $knowledgeId
+     * @param int $userId
+     * @param int $knowledgeId
      * @return bool
      */
-    public function memberCollectionKnowledge($userId, $knowledgeId)
+    public static function addMemberCollectionRecode($userId = 0, $knowledgeId = 0)
     {
-        return $this->save([
-            'user_id' => $userId,
-            'knowledge' => $knowledgeId
-        ]);
+        if (empty($userId) || empty($knowledgeId))  return false;
+
+        $check = self::where('user_id', '=', $userId)->where('knowledge_id', '=', $knowledgeId)->first();
+        if ($check) {
+            return true;
+        }
+
+        $info = new self();
+        $info->user_id = $userId;
+        $info->knowledge_id = $knowledgeId;
+
+        return $info->save();
     }
 
     /**

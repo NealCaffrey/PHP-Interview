@@ -18,7 +18,6 @@ Route::prefix('index')->group(function () {
     Route::get('/category', [\App\Http\Controllers\IndexController::class, 'category']);
     Route::get('/knowledge/{categoryId}', [\App\Http\Controllers\IndexController::class, 'knowledge']);
     Route::get('/search/{keyword}', [\App\Http\Controllers\IndexController::class, 'search']);
-    Route::get('/knowledgeInfo/{id}', [\App\Http\Controllers\IndexController::class, 'knowledgeInfo']);
     Route::get('/rank', [\App\Http\Controllers\IndexController::class, 'rankList']);
     Route::get('/version', [\App\Http\Controllers\IndexController::class, 'version']);
     Route::get('/help', [\App\Http\Controllers\IndexController::class, 'help']);
@@ -35,4 +34,5 @@ Route::prefix('user')->group(function () {
     Route::get('/browse', [\App\Http\Controllers\UserController::class, 'browseList']);//浏览列表
     Route::post('sign', [\App\Http\Controllers\UserController::class, 'sign']);//签到
     Route::get('/exam', [\App\Http\Controllers\UserController::class, 'generateExam']);//生成试卷
+    Route::get('/knowledgeInfo/{id}', [\App\Http\Controllers\UserController::class, 'knowledgeInfo']);//知识点详情
 });

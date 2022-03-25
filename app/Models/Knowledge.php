@@ -106,6 +106,9 @@ class Knowledge extends Model
         $data = self::with(['category' => function($query) {
             $query->select('id', 'category_name');
         }])->find($id);
+        if (empty($data)) {
+            return [];
+        }
 
         //上一篇
         $prev = self::where('id', '<', $id)->where('category_id', '=', $data->category_id)->max('id');

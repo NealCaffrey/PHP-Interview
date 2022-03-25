@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Browse;
 use App\Models\Category;
+use App\Models\Collection;
 use App\Models\Help;
 use App\Models\Knowledge;
 use App\Models\Version;
+use Illuminate\Http\Request;
+use Qiniu\Auth;
+use Tymon\JWTAuth\Contracts\Providers\JWT;
+use Tymon\JWTAuth\JWTAuth;
 
 class IndexController extends Controller
 {
@@ -60,20 +66,6 @@ class IndexController extends Controller
             'list' => $data
         ]);
     }
-
-    /**
-     * 知识点详情
-     * @param $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function knowledgeInfo($id)
-    {
-        return response()->json([
-            'status'=> true,
-            'data' => Knowledge::getKnowledgeInfo($id)
-        ]);
-    }
-
 
     /**
      * 版本信息

@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Browse;
 use App\Models\Collection;
+use App\Models\Knowledge;
 use App\Models\Question;
 use App\Models\Sign;
 use Illuminate\Http\Request;
@@ -32,9 +33,23 @@ class UserController extends Controller
     public function collection(Request $request)
     {
         $knowledgeId = $request->input('knowledge_id');
-        $collection = new Collection();
+        if (empty($knowledgeId)) {
+            return response()->json([
+                'status' => false,
+                'message' => 'knowledge_id不能为空'
+            ]);
+        }
+
+        $knowInfo = Knowledge::find($knowledgeId);
+        if (empty($knowInfo)) {
+            return response()->json([
+                'status' => false,
+                'message' => '知识点不存在'
+            ]);
+        }
+
         return response()->json([
-            'status'=> $collection->memberCollectionKnowledge(auth()->user()->id, $knowledgeId)
+            'status'=> Collection::addMemberCollectionRecode(auth()->user()->id, $knowledgeId)
         ]);
     }
 
@@ -107,5 +122,26 @@ class UserController extends Controller
             'status'=>true,
             'list' => Question::generateExam($categoryIds, $number, $pattern)
         ]);
+    }
+
+    /**
+     * 知识点详情
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function knowledgeInfo($id)
+    {
+        $info = Knowledge::getKnowledgeInfo($id);
+        if ($info) {
+            return response()->json([
+                'status'=> true,
+                'data' => Knowledge::getKnowledgeInfo($id)
+            ]);
+        } else {
+            return response()->json([
+                'status'=> false,
+                'message' => '数据不存在'
+            ]);
+        }
     }
 }

@@ -15,24 +15,27 @@ class Browse extends Model
 
     /**
      * 记录用户浏览知识点
-     * @param $userId
-     * @param $knowledgeId
+     * @param int $userId
+     * @param int $knowledgeId
      * @return bool
      */
-    public function memberBrowseKnowledge($userId, $knowledgeId)
+    public static function addMemberBrowseRecord($userId = 0, $knowledgeId = 0)
     {
-        return $this->save([
-            'user_id' => $userId,
-            'knowledge_id' => $knowledgeId
-        ]);
+        if (empty($userId) || empty($knowledgeId)) return false;
+
+        $info = new self();
+        $info->user_id = $userId;
+        $info->knowledge_id = $knowledgeId;
+
+        return $info->save();
     }
 
     /**
      * 用户浏览记录
-     * @param $userId
+     * @param int $userId
      * @return mixed
      */
-    public static function getMemberBrowseList($userId)
+    public static function getMemberBrowseList($userId = 0)
     {
         return self::where('user_id', '=', $userId)->get();
     }
