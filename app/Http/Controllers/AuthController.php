@@ -67,6 +67,10 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
+        $credentials = [
+            'email' => '1@qq.com',
+            'password' => 'liuchuanqi7'
+        ];
         if (!$token = auth('api')->attempt($credentials)) {
             return response()->json([
                 'status' => false,
