@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use EasyWeChat\MiniProgram\Application;
 
 class AuthController extends Controller
 {
@@ -66,6 +67,22 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
+        $config = [
+            'app_id' => 'wx9a12b3e8c9b4058a',
+            'secret' => '76d6691a897aa90cc927e11cccdb1367',
+        ];
+
+        //获取openid
+        $app = new Application($config);
+        $api = $app->getClient();
+        $response = $api->get('/sns/jscode2session', [
+            'js_code' => $request->input('code'),
+            'grant_type' => 'authorization_code'
+        ]);
+
+
+        dd($response);
+
         $credentials = $request->only('email', 'password');
         $credentials = [
             'email' => '1@qq.com',

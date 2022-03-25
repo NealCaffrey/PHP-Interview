@@ -13,6 +13,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "tymon/jwt-auth": "^1.0",
+        "w7corp/easywechat": "^5.18",
         "zgldh/qiniu-laravel-storage": "0.10.3"
     },
     "require-dev": {
