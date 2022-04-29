@@ -73,7 +73,7 @@ class KnowledgeController extends AdminController
 
             $form->text('question')->rules('required');
             $form->number('sort')->rules('required');
-            $form->markdown('answer')->rules('required');
+            $form->editor('answer')->rules('required');
 
             $form->display('created_at');
             $form->display('updated_at');
