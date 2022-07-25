@@ -56,15 +56,15 @@ return [
         'qiniu' => [
             'driver'  => 'qiniu',
             'domains' => [
-                'default'   => 'xxxxx.com1.z0.glb.clouddn.com', //你的七牛域名
-                'https'     => 'dn-yourdomain.qbox.me',         //你的HTTPS域名
-                'custom'    => 'static.abc.com',                //你的自定义域名
+                'default'   => 'rfk94eqcu.hn-bkt.clouddn.com', //你的七牛域名
+                'https'     => '',         //你的HTTPS域名
+                'custom'    => '',                //你的自定义域名
             ],
-            'access_key'=> '',  //AccessKey
-            'secret_key'=> '',  //SecretKey
-            'bucket'    => '',  //Bucket名字
+            'access_key'=> '75N9yJlfZlnDBZe0tJqq0fcwMTf6ph2A0HID7QKM',  //AccessKey
+            'secret_key'=> '9X_Z2_Cf1BxsQeBm5WLoZwvcZ1npzBQmPzZoAGBe',  //SecretKey
+            'bucket'    => 'php-interview',  //Bucket名字
             'notify_url'=> '',  //持久化处理回调地址
-            'url'       => 'http://of8kfibjo.bkt.clouddn.com/',  // 填写文件访问根url
+            'url'       => '',  // 填写文件访问根url
         ],
     ],
 

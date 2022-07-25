@@ -3729,16 +3729,16 @@
         },
         {
             "name": "qiniu/php-sdk",
-            "version": "v7.4.2",
+            "version": "v7.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/qiniu/php-sdk.git",
-                "reference": "8414ee6b0027acc682469c7a2e7144f3ed2b7676"
+                "reference": "57033fab64c92f8c7ae165222dd958553741e711"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/qiniu/php-sdk/zipball/8414ee6b0027acc682469c7a2e7144f3ed2b7676",
-                "reference": "8414ee6b0027acc682469c7a2e7144f3ed2b7676",
+                "url": "https://api.github.com/repos/qiniu/php-sdk/zipball/57033fab64c92f8c7ae165222dd958553741e711",
+                "reference": "57033fab64c92f8c7ae165222dd958553741e711",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3786,9 +3786,9 @@
             ],
             "support": {
                 "issues": "https://github.com/qiniu/php-sdk/issues",
-                "source": "https://github.com/qiniu/php-sdk/tree/v7.4.2"
+                "source": "https://github.com/qiniu/php-sdk/tree/v7.6.0"
             },
-            "time": "2022-03-02T04:10:03+00:00"
+            "time": "2022-06-08T10:05:47+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
