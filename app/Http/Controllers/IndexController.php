@@ -42,6 +42,27 @@ class IndexController extends Controller
     }
 
     /**
+     * 知识点详情
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function knowledgeInfo($id)
+    {
+        $info = Knowledge::getKnowledgeInfo($id);
+        if ($info) {
+            return response()->json([
+                'status'=> true,
+                'data' => Knowledge::getKnowledgeInfo($id)
+            ]);
+        } else {
+            return response()->json([
+                'status'=> false,
+                'message' => '数据不存在'
+            ]);
+        }
+    }
+
+    /**
      * 收藏榜单
      * @return \Illuminate\Http\JsonResponse
      */

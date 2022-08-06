@@ -123,25 +123,4 @@ class UserController extends Controller
             'list' => Question::generateExam($categoryIds, $number, $pattern)
         ]);
     }
-
-    /**
-     * 知识点详情
-     * @param $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function knowledgeInfo($id)
-    {
-        $info = Knowledge::getKnowledgeInfo($id);
-        if ($info) {
-            return response()->json([
-                'status'=> true,
-                'data' => Knowledge::getKnowledgeInfo($id)
-            ]);
-        } else {
-            return response()->json([
-                'status'=> false,
-                'message' => '数据不存在'
-            ]);
-        }
-    }
 }
