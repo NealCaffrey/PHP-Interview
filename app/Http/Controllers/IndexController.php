@@ -52,7 +52,7 @@ class IndexController extends Controller
         if ($info) {
             return response()->json([
                 'status'=> true,
-                'data' => Knowledge::getKnowledgeInfo($id)
+                'data' => $info
             ]);
         } else {
             return response()->json([
