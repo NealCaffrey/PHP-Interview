@@ -56,12 +56,12 @@ class Knowledge extends Model
      * @param int $categoryId
      * @return mixed|void
      */
-    public static function getKnowledgeListCacheByCategory($categoryId = 0)
+    public static function getKnowledgeListCacheByCategory($categoryName = '')
     {
-        $cache = Redis::get('know:list:' . $categoryId);
+        $cache = Redis::get('know:list:' . $categoryName);
         $data  = json_decode($cache);
         if (empty($data)) {
-            $data = self::saveKnowledgeListCacheByCategory($categoryId);
+            $data = self::saveKnowledgeListCacheByCategory($categoryName);
         }
 
         return $data;
@@ -69,13 +69,19 @@ class Knowledge extends Model
 
     /**
      * 保存分类下知识点列表
-     * @param int $categoryId
+     * @param string $categoryName
      * @return mixed
      */
-    public static function saveKnowledgeListCacheByCategory($categoryId = 0)
+    public static function saveKnowledgeListCacheByCategory($categoryName = '')
     {
-        $data = self::where('category_id', '=', $categoryId)->get();
-        Redis::set('know:list:' . $categoryId, json_encode($data), 86400);
+        $keyName = 'know:list:' . $categoryName;
+        $category = Category::where('alias', '=', $categoryName)->first();
+        if (empty($category)) {
+            Redis::set($keyName, json_encode([]), 300);//如果没有此分类，缓存空结果
+        }
+
+        $data = self::where('category_id', '=', $category->id)->get();
+        Redis::set($keyName, json_encode($data), 86400);
 
         return $data;
     }

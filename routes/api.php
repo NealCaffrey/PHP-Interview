@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 //首页
 Route::prefix('index')->group(function () {
     Route::get('/category', [\App\Http\Controllers\IndexController::class, 'category']);
-    Route::get('/knowledge/{categoryId}', [\App\Http\Controllers\IndexController::class, 'knowledge']);
-    Route::get('/knowledgeInfo/{id}', [\App\Http\Controllers\IndexController::class, 'knowledgeInfo']);//知识点详情
+    Route::get('/knowledge/{categoryName}', [\App\Http\Controllers\IndexController::class, 'knowledge']);
+    Route::get('/knowledgeInfo/{id}', [\App\Http\Controllers\IndexController::class, 'knowledgeInfo']);
     Route::get('/search/{keyword}', [\App\Http\Controllers\IndexController::class, 'search']);
     Route::get('/rank', [\App\Http\Controllers\IndexController::class, 'rankList']);
     Route::get('/version', [\App\Http\Controllers\IndexController::class, 'version']);

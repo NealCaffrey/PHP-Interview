@@ -33,11 +33,11 @@ class IndexController extends Controller
      * @param $categoryId
      * @return \Illuminate\Http\JsonResponse
      */
-    public function knowledge($categoryId)
+    public function knowledge($categoryName)
     {
         return response()->json([
             'status'=> true,
-            'list' => Knowledge::getKnowledgeListCacheByCategory($categoryId)
+            'list' => Knowledge::getKnowledgeListCacheByCategory($categoryName)
         ]);
     }
 

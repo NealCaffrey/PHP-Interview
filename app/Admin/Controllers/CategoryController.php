@@ -20,6 +20,7 @@ class CategoryController extends AdminController
         return Grid::make(new Category(), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('category_name');
+            $grid->column('alias');
             $grid->column('sort')->sortable();
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
@@ -45,6 +46,7 @@ class CategoryController extends AdminController
         return Show::make($id, new Category(), function (Show $show) {
             $show->field('id');
             $show->field('category_name');
+            $show->field('alias');
             $show->field('sort');
             $show->field('created_at');
             $show->field('updated_at');
@@ -61,6 +63,7 @@ class CategoryController extends AdminController
         return Form::make(new Category(), function (Form $form) {
             $form->display('id');
             $form->text('category_name')->rules('required');
+            $form->text('alias')->rules('required');
             $form->text('sort')->rules('required|integer');
 
             $form->display('created_at');
